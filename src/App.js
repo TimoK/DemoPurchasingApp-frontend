@@ -1,5 +1,6 @@
 import "./App.css";
 import BuyProcedureCard from "./Components/BuyProcedureCard";
+import buyProcedures from "./BuyProcedures.json";
 
 function App() {
   return (
@@ -12,8 +13,9 @@ function App() {
         verder met je bestaande procedures.
       </p>
       <div>
-        <BuyProcedureCard title="Moersleutels" maxPrice="25000" />
-        <BuyProcedureCard title="Bedrijfsauto's" maxPrice={200340} />
+        {buyProcedures.map((x) => (
+          <BuyProcedureCard title={x.title} maxPrice={x.maxPrice} />
+        ))}
       </div>
     </div>
   );
