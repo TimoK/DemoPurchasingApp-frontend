@@ -1,0 +1,18 @@
+.buy-procedure-card {
+  text-align: left;
+  background: rgba(226, 226, 226, 0.856);
+  border-radius: 5%;
+  padding: 10px;
+  margin: 10px;
+}
+
+.buy-procedure-card h2 {
+  font-size: 1.5em;
+  margin: 0px;
+  margin-bottom: 5px;
+}
+
+.buy-procedure-card p {
+  font-style: italic;
+  margin: 0px;
+}
