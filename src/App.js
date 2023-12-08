@@ -1,8 +1,25 @@
 import "./App.css";
 import BuyProcedureCard from "./Components/BuyProcedureCard";
-import buyProcedures from "./BuyProcedures.json";
+import { useState, useEffect } from "react";
 
 function App() {
+  const [buyProcedures, setBuyProcedures] = useState([]);
+  useEffect(() => {
+    const isDev = process.env.NODE_ENV === "development";
+    console.log(isDev ? "fetching from local" : "fetching from azure");
+    const url = isDev
+      ? "https://localhost:7244/buyprocedures"
+      : "https://demopurchasingappbackend20231208091324.azurewebsites.net/buyprocedures";
+
+    fetch(url)
+      .then((response) => {
+        return response.json();
+      })
+      .then((resData) => {
+        setBuyProcedures(resData);
+      });
+  }, []);
+
   return (
     <div className="main-div">
       <header>
@@ -14,7 +31,11 @@ function App() {
       </p>
       <div>
         {buyProcedures.map((x) => (
-          <BuyProcedureCard title={x.title} maxPrice={x.maxPrice} />
+          <BuyProcedureCard
+            title={x.title}
+            maxPrice={x.maxPrice}
+            key={x.title}
+          />
         ))}
       </div>
     </div>
