@@ -6,7 +6,6 @@ function App() {
   const [buyProcedures, setBuyProcedures] = useState([]);
   useEffect(() => {
     const isDev = process.env.NODE_ENV === "development";
-    console.log(isDev ? "fetching from local" : "fetching from azure");
     const url = isDev
       ? "https://localhost:7244/buyprocedures"
       : "https://demopurchasingappbackend20231208091324.azurewebsites.net/buyprocedures";
