@@ -1,48 +1,20 @@
 import "./App.css";
-import { useSelector, useDispatch } from "react-redux";
-import BuyProcedureCard from "./components/BuyProcedureCard";
-import { useState, useEffect, useRef } from "react";
-import CreateBuyProcedureModal from "./components/CreateBuyProcedureModal";
-import { fetchBuyProcedures } from "./store/buyProcedureActions";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import MainWrapper from "./pages/MainWrapper";
+import BuyProcedureOverview from "./pages/BuyProcedureOverview";
+import BuyProcedurePage from "./pages/BuyProcedurePage";
 
-function App() {
-  const dispatch = useDispatch();
-  const modal = useRef();
-  const buyProcedures = useSelector(
-    (state) => state.buyProcedure.buyProcedures
-  );
+export default function App() {
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <MainWrapper />,
+      children: [
+        { index: true, element: <BuyProcedureOverview /> },
+        { path: ":id", element: <BuyProcedurePage /> },
+      ],
+    },
+  ]);
 
-  useEffect(() => {
-    dispatch(fetchBuyProcedures());
-  }, []);
-
-  function handleCreateClick() {
-    modal.current.open();
-  }
-
-  return (
-    <div className="main-div">
-      <header>
-        <h1>Snakelbaars B.V.</h1>
-      </header>
-      <CreateBuyProcedureModal ref={modal} />
-      <p>
-        Welkom terug! <button onClick={handleCreateClick}>Klik hier</button> om
-        een nieuwe inkoopprocedure te starten of ga verder met je bestaande
-        procedures.
-      </p>
-      <div>
-        {buyProcedures &&
-          buyProcedures.map((x) => (
-            <BuyProcedureCard
-              title={x.title}
-              maxPrice={x.maxPrice}
-              key={x.title}
-            />
-          ))}
-      </div>
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
-
-export default App;
