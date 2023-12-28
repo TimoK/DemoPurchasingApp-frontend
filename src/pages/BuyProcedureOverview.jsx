@@ -1,19 +1,13 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import BuyProcedureCard from "../components/BuyProcedureCard";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import CreateBuyProcedureModal from "../components/CreateBuyProcedureModal";
-import { fetchBuyProcedures } from "../store/buyProcedureActions";
 
 export default function BuyProcedureOverview() {
-  const dispatch = useDispatch();
   const modal = useRef();
   const buyProcedures = useSelector(
     (state) => state.buyProcedure.buyProcedures
   );
-
-  useEffect(() => {
-    dispatch(fetchBuyProcedures());
-  }, []);
 
   function handleCreateClick() {
     modal.current.open();
@@ -34,6 +28,7 @@ export default function BuyProcedureOverview() {
               title={x.title}
               maxPrice={x.maxPrice}
               key={x.title}
+              id={x.id}
             />
           ))}
       </div>

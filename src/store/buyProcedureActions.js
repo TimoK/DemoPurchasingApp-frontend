@@ -14,6 +14,7 @@ export function fetchBuyProcedures() {
       return data;
     };
     const buyProcedures = await fetchData();
+    console.log(buyProcedures);
     dispatch(buyProcedureDispatches.replaceBuyProcedures(buyProcedures));
   };
 }

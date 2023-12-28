@@ -1,10 +1,13 @@
+import { Link } from "react-router-dom";
 import "./BuyProcedureCard.css";
 
-export default function BuyProcedureCard({ title, maxPrice }) {
+export default function BuyProcedureCard({ title, maxPrice, id }) {
   return (
-    <div className="buy-procedure-card">
-      <h2>{title}</h2>
-      <p className="detail">Max prijs: {maxPrice} euro</p>
-    </div>
+    <Link to={id.toString()}>
+      <div className="buy-procedure-card">
+        <h2>{title}</h2>
+        <p className="detail">Max prijs: {maxPrice} euro</p>
+      </div>
+    </Link>
   );
 }
