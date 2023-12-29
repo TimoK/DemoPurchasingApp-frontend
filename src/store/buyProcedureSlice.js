@@ -9,6 +9,9 @@ const buyProcedureSlice = createSlice({
     replaceBuyProcedures(state, action) {
       state.buyProcedures = action.payload;
     },
+    addBuyProcedure(state, action) {
+      state.buyProcedures.push({ id: action.payload });
+    },
   },
 });
 

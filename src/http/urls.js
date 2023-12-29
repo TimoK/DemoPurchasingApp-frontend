@@ -7,3 +7,5 @@ function getBaseUrl() {
 }
 
 export const BUY_PROCEDURES_URL = getBaseUrl() + "/buyprocedures";
+
+export const JSON_HEADER = { "Content-Type": "application/json" };

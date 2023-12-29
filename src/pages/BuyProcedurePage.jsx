@@ -14,7 +14,9 @@ export default function BuyProcedurePage() {
       {buyProcedure && (
         <div className="buy-procedure-card">
           <h1>Dummy detail view</h1>
-          <h2>{buyProcedure.title}</h2>
+          <h2>
+            {buyProcedure.title ? buyProcedure.title : "Nieuwe procedure"}
+          </h2>
           <p className="detail">Max prijs: {buyProcedure.maxPrice} euro</p>
         </div>
       )}

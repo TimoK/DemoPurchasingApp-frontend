@@ -1,21 +1,21 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import BuyProcedureCard from "../components/BuyProcedureCard";
-import { useRef } from "react";
-import CreateBuyProcedureModal from "../components/CreateBuyProcedureModal";
+import { useNavigate } from "react-router-dom";
+import { createBuyProcedureAndNavigate } from "../store/buyProcedureActions";
 
 export default function BuyProcedureOverview() {
-  const modal = useRef();
   const buyProcedures = useSelector(
     (state) => state.buyProcedure.buyProcedures
   );
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   function handleCreateClick() {
-    modal.current.open();
+    dispatch(createBuyProcedureAndNavigate(navigate));
   }
 
   return (
     <>
-      <CreateBuyProcedureModal ref={modal} />
       <p>
         Welkom terug! <button onClick={handleCreateClick}>Klik hier</button> om
         een nieuwe inkoopprocedure te starten of ga verder met je bestaande
@@ -27,7 +27,7 @@ export default function BuyProcedureOverview() {
             <BuyProcedureCard
               title={x.title}
               maxPrice={x.maxPrice}
-              key={x.title}
+              key={x.id}
               id={x.id}
             />
           ))}
