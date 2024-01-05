@@ -4,9 +4,9 @@ export default function NavBar() {
   return (
     <header>
       <h1>Snakelbaars B.V.</h1>
-      <div class="navbar">
+      <div className="navbar">
         <nav>
-          <ul class="list">
+          <ul className="list">
             <li>
               <NavLink to="" end>
                 Inkoopprocedures

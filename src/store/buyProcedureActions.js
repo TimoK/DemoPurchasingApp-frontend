@@ -7,7 +7,7 @@ export function fetchBuyProcedures() {
       const response = await fetch(BUY_PROCEDURES_URL);
 
       if (!response.ok) {
-        throw new Error("Fetching of buy procedures has failed!");
+        throw new Error("Fetching of buy procedures has failed at server!");
       }
 
       const data = await response.json();
@@ -34,7 +34,7 @@ export function createBuyProcedureAndNavigate(navigate) {
       const response = await fetch(BUY_PROCEDURES_URL, requestOptions);
 
       if (!response.ok) {
-        throw new Error("Creation of buy procedure has failed!");
+        throw new Error("Creation of buy procedure has failed at server!");
       }
 
       const data = await response.json();
@@ -56,8 +56,6 @@ export function updateBuyProcedure(buyProcedure, fieldName, updatedValue) {
     ...buyProcedure,
     [fieldName]: updatedValue,
   };
-  console.log(updatedValue);
-  console.log(updatedBuyProcedure);
   return async (dispatch) => {
     const putUpdate = async () => {
       const requestOptions = {
@@ -69,7 +67,7 @@ export function updateBuyProcedure(buyProcedure, fieldName, updatedValue) {
       const response = await fetch(BUY_PROCEDURES_URL, requestOptions);
 
       if (!response.ok) {
-        throw new Error("Updating of buy procedure has failed!");
+        throw new Error("Updating of buy procedure has failed at server!");
       }
     };
 

@@ -16,24 +16,26 @@ export default function CostOverview({ price, costEnumerationType }) {
       <fieldset>
         <legend>Inschatting kosten</legend>
         <table>
-          {isQuarterly && (
+          <tbody>
+            {isQuarterly && (
+              <tr>
+                <td>Kosten per termijn:</td>
+                <td>{euroFormat.format(price)}</td>
+              </tr>
+            )}
             <tr>
-              <td>Kosten per termijn:</td>
-              <td>{euroFormat.format(price)}</td>
+              <td>Totale kosten{!isOneTime && " per jaar"}:</td>
+              <td>{euroFormat.format(totalPriceExcl)}</td>
             </tr>
-          )}
-          <tr>
-            <td>Totale kosten{!isOneTime && " per jaar"}:</td>
-            <td>{euroFormat.format(totalPriceExcl)}</td>
-          </tr>
-          <tr>
-            <td>Btw-tarief ({BTW_RATE * 100}%):</td>
-            <td>{euroFormat.format(totalPriceBtw)}</td>
-          </tr>
-          <tr>
-            <td>Totaal inclusief Btw:</td>
-            <td>{euroFormat.format(totalPriceIncl)}</td>
-          </tr>
+            <tr>
+              <td>Btw-tarief ({BTW_RATE * 100}%):</td>
+              <td>{euroFormat.format(totalPriceBtw)}</td>
+            </tr>
+            <tr>
+              <td>Totaal inclusief Btw:</td>
+              <td>{euroFormat.format(totalPriceIncl)}</td>
+            </tr>
+          </tbody>
         </table>
       </fieldset>
       {totalPriceExcl > EUROPEAN_TENDER_THRESHOLD && (

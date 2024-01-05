@@ -17,7 +17,8 @@ export default function BuyProcedurePage() {
     buyProcedures && buyProcedures.filter((x) => x.id.toString() === id)[0];
 
   function onChange(value, identifier) {
-    dispatch(updateBuyProcedure(buyProcedure, identifier, value));
+    if (value !== "")
+      dispatch(updateBuyProcedure(buyProcedure, identifier, value));
   }
 
   const costEnumerationOptions = [
@@ -68,7 +69,6 @@ export default function BuyProcedurePage() {
               Wat is momenteel de beste inschatting van de kosten?
             </TextInput>
 
-            {console.log(buyProcedure)}
             <RadioButtonSet
               options={costEnumerationOptions}
               checkedId={

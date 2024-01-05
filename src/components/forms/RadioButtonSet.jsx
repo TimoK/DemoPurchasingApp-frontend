@@ -9,7 +9,6 @@ export default function RadioButtonSet({
   return (
     <fieldset>
       <legend>{children}</legend>
-      {console.log(options)}
       {options.map((option) => (
         <RadioButton
           key={option.id}
