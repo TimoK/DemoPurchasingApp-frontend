@@ -12,6 +12,12 @@ const buyProcedureSlice = createSlice({
     addBuyProcedure(state, action) {
       state.buyProcedures.push({ id: action.payload });
     },
+    updateBuyProcedure(state, action) {
+      const buyProcedure = state.buyProcedures.filter(
+        (x) => x.id === action.payload.id
+      )[0];
+      buyProcedure[action.payload.fieldName] = action.payload.updatedValue;
+    },
   },
 });
 

@@ -50,3 +50,40 @@ export function createBuyProcedureAndNavigate(navigate) {
     }
   };
 }
+
+export function updateBuyProcedure(buyProcedure, fieldName, updatedValue) {
+  const updatedBuyProcedure = {
+    ...buyProcedure,
+    [fieldName]: updatedValue,
+  };
+  console.log(updatedValue);
+  console.log(updatedBuyProcedure);
+  return async (dispatch) => {
+    const putUpdate = async () => {
+      const requestOptions = {
+        method: "PUT",
+        headers: JSON_HEADER,
+        body: JSON.stringify(updatedBuyProcedure),
+      };
+
+      const response = await fetch(BUY_PROCEDURES_URL, requestOptions);
+
+      if (!response.ok) {
+        throw new Error("Updating of buy procedure has failed!");
+      }
+    };
+
+    try {
+      await putUpdate();
+      dispatch(
+        buyProcedureDispatches.updateBuyProcedure({
+          id: buyProcedure.id,
+          fieldName,
+          updatedValue,
+        })
+      );
+    } catch {
+      throw new Error("Updating of buy procedure has failed!");
+    }
+  };
+}

@@ -26,7 +26,7 @@ export default function BuyProcedureOverview() {
           buyProcedures.map((x) => (
             <BuyProcedureCard
               title={x.title}
-              maxPrice={x.maxPrice}
+              price={x.price}
               key={x.id}
               id={x.id}
             />
