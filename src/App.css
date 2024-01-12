@@ -43,3 +43,13 @@ p {
 .list a.active {
   color: blue;
 }
+
+.list a.completed {
+  color: green;
+}
+
+.list a.disabled {
+  pointer-events: none;
+  font-style: italic;
+  color: gray;
+}

@@ -1,4 +1,5 @@
 import { buyProcedureDispatches } from "./buyProcedureSlice";
+import { phaseDispatches } from "./phaseSlice";
 import { BUY_PROCEDURES_URL, JSON_HEADER } from "../http/urls";
 
 export function fetchBuyProcedures() {
@@ -16,7 +17,12 @@ export function fetchBuyProcedures() {
     try {
       const buyProcedures = await fetchData();
       dispatch(buyProcedureDispatches.replaceBuyProcedures(buyProcedures));
-    } catch {
+      buyProcedures.forEach((x) => {
+        dispatch(phaseDispatches.createPhases(x.id));
+        dispatch(phaseDispatches.updatePhases(x));
+      });
+    } catch (error) {
+      console.log(error);
       throw new Error("Fetching of buy procedures has failed!");
     }
   };
@@ -44,9 +50,11 @@ export function createBuyProcedureAndNavigate(navigate) {
     try {
       const id = await postNew();
       dispatch(buyProcedureDispatches.addBuyProcedure(id));
-      navigate(id.toString());
-    } catch {
-      throw new Error("Creation of buy procedure has failed!");
+      dispatch(phaseDispatches.createPhases(id));
+      navigate(`${id.toString()}/1`);
+    } catch (error) {
+      console.log(error);
+      throw new Error("Fetching of buy procedures has failed!");
     }
   };
 }
@@ -80,8 +88,10 @@ export function updateBuyProcedure(buyProcedure, fieldName, updatedValue) {
           updatedValue,
         })
       );
-    } catch {
-      throw new Error("Updating of buy procedure has failed!");
+      dispatch(phaseDispatches.updatePhases(updatedBuyProcedure));
+    } catch (error) {
+      console.log(error);
+      throw new Error("Fetching of buy procedures has failed!");
     }
   };
 }

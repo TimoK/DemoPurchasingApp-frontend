@@ -1,3 +1,3 @@
-export default function InputSection({ children, isVisible }) {
+export default function InputSection({ children, isVisible = true }) {
   return <>{isVisible && children}</>;
 }
