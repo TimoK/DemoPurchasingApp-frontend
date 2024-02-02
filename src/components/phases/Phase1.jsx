@@ -7,11 +7,10 @@ export default function Phase1({ buyProcedure, onChange }) {
       <TextInput
         type="text"
         name="title"
-        defaultValue={buyProcedure.title}
+        label="Wat wil je inkopen?"
+        value={buyProcedure.title}
         onBlur={(event) => onChange(event.target.value, "title")}
-      >
-        Wat wil je inkopen?
-      </TextInput>
+      />
     </InputSection>
   );
 }

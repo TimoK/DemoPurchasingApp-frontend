@@ -45,7 +45,7 @@ export default function PhasePage() {
         <>
           <PhaseNavBar phaseInfo={phaseInfo} phaseId={phaseId} />
 
-          <div className="buy-procedure-card">
+          <div className="buy-procedure-phase-wrapper">
             <h2>
               {buyProcedure.title ? buyProcedure.title : "Nieuwe procedure"}
             </h2>

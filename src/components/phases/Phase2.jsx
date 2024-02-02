@@ -29,12 +29,12 @@ export default function Phase2({ buyProcedure, onChange }) {
           type="number"
           step={1}
           name="price"
-          defaultValue={buyProcedure.price}
+          value={buyProcedure.price}
           onBlur={(event) => onChange(event.target.value, "price")}
-        >
-          Wat is momenteel de beste inschatting van de kosten?
-        </TextInput>
-
+          label="Wat is momenteel de beste inschatting van de kosten?"
+        />
+      </InputSection>
+      <InputSection>
         <RadioButtonSet
           options={costEnumerationOptions}
           checkedId={
@@ -44,9 +44,8 @@ export default function Phase2({ buyProcedure, onChange }) {
           onChange={(event) =>
             onChange(parseInt(event.target.value), "costEnumerationType")
           }
-        >
-          Binnen welke termijn worden de kosten gemaakt?
-        </RadioButtonSet>
+          label="Binnen welke termijn worden de kosten gemaakt?"
+        ></RadioButtonSet>
       </InputSection>
       <InputSection
         isVisible={

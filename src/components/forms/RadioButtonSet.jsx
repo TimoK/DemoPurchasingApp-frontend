@@ -1,22 +1,26 @@
-import RadioButton from "./RadioButton";
+import SlRadio from "@shoelace-style/shoelace/dist/react/radio";
+import SlRadioGroup from "@shoelace-style/shoelace/dist/react/radio-group";
 
 export default function RadioButtonSet({
-  children,
+  label,
   options,
   checkedId,
   onChange,
 }) {
   return (
-    <fieldset>
-      <legend>{children}</legend>
-      {options.map((option) => (
-        <RadioButton
-          key={option.id}
-          option={option}
-          checked={option.id === checkedId}
-          onChange={onChange}
-        />
-      ))}
-    </fieldset>
+    <>
+      <SlRadioGroup label={label} name="a" value={checkedId}>
+        {options.map((option) => (
+          <SlRadio
+            key={option.id}
+            value={option.id}
+            checked={option.id === checkedId}
+            onFocus={onChange}
+          >
+            {option.caption}
+          </SlRadio>
+        ))}
+      </SlRadioGroup>
+    </>
   );
 }

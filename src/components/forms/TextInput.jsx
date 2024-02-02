@@ -1,8 +1,5 @@
+import SlInput from "@shoelace-style/shoelace/dist/react/input";
+
 export default function TextInput({ children, ...props }) {
-  return (
-    <fieldset>
-      <legend>{children}</legend>
-      <input {...props} />
-    </fieldset>
-  );
+  return <SlInput className="sl-input" {...props} />;
 }

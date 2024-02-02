@@ -13,44 +13,52 @@ export default function CostOverview({ price, costEnumerationType }) {
 
   return (
     <>
-      <fieldset>
-        <legend>Inschatting kosten</legend>
-        <table>
-          <tbody>
-            {isQuarterly && (
-              <tr>
-                <td>Kosten per termijn:</td>
-                <td>{euroFormat.format(price)}</td>
-              </tr>
-            )}
+      <h3>Inschatting kosten</h3>
+      <table className="cost-overview-table">
+        <tbody>
+          {isQuarterly && (
             <tr>
               <td>Totale kosten{!isOneTime && " per jaar"}:</td>
               <td>{euroFormat.format(totalPriceExcl)}</td>
             </tr>
-            <tr>
-              <td>Btw-tarief ({BTW_RATE * 100}%):</td>
-              <td>{euroFormat.format(totalPriceBtw)}</td>
-            </tr>
-            <tr>
-              <td>Totaal inclusief Btw:</td>
-              <td>{euroFormat.format(totalPriceIncl)}</td>
-            </tr>
-          </tbody>
-        </table>
-      </fieldset>
+          )}
+          <tr>
+            <td>Totale kosten{!isOneTime && " per jaar"}:</td>
+            <td>{euroFormat.format(totalPriceExcl)}</td>
+          </tr>
+          <tr>
+            <td>Btw-tarief ({BTW_RATE * 100}%):</td>
+            <td>{euroFormat.format(totalPriceBtw)}</td>
+          </tr>
+
+          <tr>
+            <td className="total-cost-description">
+              <hr />
+              Totaal inclusief Btw:
+            </td>
+            <td className="total-cost-value">
+              <hr />
+              {euroFormat.format(totalPriceIncl)}
+            </td>
+          </tr>
+        </tbody>
+      </table>
       {totalPriceExcl > EUROPEAN_TENDER_THRESHOLD && (
-        <fieldset>
-          <legend>Aanbestedingsgrens</legend>
+        <>
+          <h3>Aanbestedingsgrens</h3>
           <p>
             Vanaf {euroFormat.format(EUROPEAN_TENDER_THRESHOLD)} (exclusief btw)
             is het wettelijk verplicht een Europese aanbesteding te doen. Kijk
             voor meer informatie bij{" "}
-            <a href="https://www.rijksoverheid.nl/onderwerpen/aanbesteden/aanbesteden-internationaal">
-              de Rijksoverheid
+            <a
+              className="link"
+              href="https://www.rijksoverheid.nl/onderwerpen/aanbesteden/aanbesteden-internationaal"
+            >
+              De Rijksoverheid
             </a>
             .
           </p>
-        </fieldset>
+        </>
       )}
     </>
   );

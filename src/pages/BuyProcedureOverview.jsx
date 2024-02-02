@@ -3,6 +3,7 @@ import BuyProcedureCard from "../components/BuyProcedureCard";
 import { useNavigate } from "react-router-dom";
 import { createBuyProcedureAndNavigate } from "../store/buyProcedureActions";
 import SlButton from "@shoelace-style/shoelace/dist/react/button";
+import { Link } from "react-router-dom";
 
 export default function BuyProcedureOverview() {
   const buyProcedures = useSelector(
@@ -21,22 +22,16 @@ export default function BuyProcedureOverview() {
       <span>
         {" "}
         en hebt het laatst gewerkt aan{" "}
-        <button
-          className="link-button"
-          onClick={() =>
-            navigate(
-              `${buyProcedures[0].id.toString()}/${
-                phaseInfos
-                  ? (
-                      phaseInfos[buyProcedures[0].id].currentPhase + 1
-                    ).toString()
-                  : "1"
-              }`
-            )
-          }
+        <Link
+          className="link"
+          to={`${buyProcedures[0].id.toString()}/${
+            phaseInfos
+              ? (phaseInfos[buyProcedures[0].id].currentPhase + 1).toString()
+              : "1"
+          }`}
         >
           {buyProcedures[0].title}
-        </button>
+        </Link>
       </span>
     ) : undefined;
 
@@ -48,7 +43,7 @@ export default function BuyProcedureOverview() {
             Welkom terug Lukas! Je hebt {buyProcedures.length} openstaande
             procedures{lastWorkedOnText}. Selecteer hieronder een procedure om
             verder te gaan, of begin met het specificeren van een{" "}
-            <button className="link-button" onClick={handleCreateClick}>
+            <button className="link-button link" onClick={handleCreateClick}>
               nieuwe procedure
             </button>
             .
