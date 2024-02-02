@@ -20,27 +20,6 @@ export default function MainWrapper() {
   return (
     <div className="main-div">
       <NavBar />
-      <div className="testshoelace">
-        <SlButton variant="primary" className="shoelace-button">
-          Nieuwe procedure
-        </SlButton>
-
-        <SlRadioGroup
-          label="Binnen welke termijn worden de kosten gemaakt?"
-          name="a"
-          value="1"
-        >
-          <SlRadio value="1">Jaarlijks</SlRadio>
-          <SlRadio value="2">Per kwartaal</SlRadio>
-          <SlRadio value="3">Eenmalig</SlRadio>
-        </SlRadioGroup>
-        <SlButton variant="danger" className="shoelace-button" outline>
-          Verwijder procedure
-        </SlButton>
-
-        <SlInput className="sl-input" label="Wat wil je inkopen?" />
-      </div>
-
       <Outlet />
     </div>
   );

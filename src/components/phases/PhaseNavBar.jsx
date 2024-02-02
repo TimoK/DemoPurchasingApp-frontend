@@ -1,46 +1,50 @@
 import { NavLink } from "react-router-dom";
 
-function getClasses(phaseInfo, zeroIndexedPhaseId, isCompleted) {
-  let classes = [];
-  if (isCompleted) {
-    classes.push("completed");
-  }
-  if (zeroIndexedPhaseId !== 0 && !phaseInfo.phases[zeroIndexedPhaseId - 1]) {
-    classes.push("disabled");
-  }
+function getPhaseNavBarClassName(
+  zeroIndexedPhaseId,
+  isCompleted,
+  isCurrentPhase,
+  isEnabled
+) {
+  let classes = ["phase-navbar"];
+  if (zeroIndexedPhaseId === 0) classes.push("first-phase");
+  if (isCompleted) classes.push("completed");
+  if (isCurrentPhase) classes.push("active");
+  if (!isEnabled) classes.push("disabled");
+
   return classes.join(" ");
 }
 
-export default function PhaseNavBar({ phaseInfo }) {
+export default function PhaseNavBar({ phaseInfo, phaseId: currentPhaseId }) {
   let oneIndexedPhaseId = 0;
-
   return (
-    <div className="navbar">
-      <nav>
-        <ul className="list">
-          {phaseInfo &&
-            phaseInfo.phases.map((isCompleted) => {
-              // Note that URLs and names are one-indexed while slide is zero-indexed, so this is not off by one
-              oneIndexedPhaseId++;
-              console.log(isCompleted);
-              return (
-                <li key={oneIndexedPhaseId}>
-                  <NavLink
-                    to={`../${oneIndexedPhaseId}`}
-                    className={getClasses(
-                      phaseInfo,
-                      oneIndexedPhaseId - 1,
-                      isCompleted
-                    )}
-                    end
-                  >
-                    Fase {oneIndexedPhaseId}
-                  </NavLink>
-                </li>
-              );
-            })}
-        </ul>
-      </nav>
+    <div className="phase-navbar-wrapper">
+      {phaseInfo &&
+        phaseInfo.phaseCompleted.map((isCompleted) => {
+          // Note that URLs and names are one-indexed while slide is zero-indexed, so this is not off by one
+          oneIndexedPhaseId++;
+
+          const isEnabled = phaseInfo.phaseEnabled[oneIndexedPhaseId - 1];
+          return (
+            <NavLink
+              key={oneIndexedPhaseId}
+              to={`../${oneIndexedPhaseId}`}
+              className={`phase-nav-link${!isEnabled ? " disabled" : ""}`}
+              end
+            >
+              <div
+                className={getPhaseNavBarClassName(
+                  oneIndexedPhaseId - 1,
+                  isCompleted,
+                  oneIndexedPhaseId.toString() === currentPhaseId,
+                  isEnabled
+                )}
+              >
+                <p>{isEnabled && oneIndexedPhaseId}</p>
+              </div>
+            </NavLink>
+          );
+        })}
     </div>
   );
 }

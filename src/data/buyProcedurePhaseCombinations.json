@@ -1,1 +1,7 @@
-[["title"], ["price", "costEnumerationType"], ["loremIpsum"]]
+[
+  ["title"],
+  ["price", "costEnumerationType"],
+  ["loremIpsum"],
+  ["loremIpsum"],
+  ["loremIpsum"]
+]

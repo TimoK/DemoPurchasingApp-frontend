@@ -1,39 +1,205 @@
+:root {
+  /* Shoe lace overwrites */
+  --sl-color-primary-500: #2139b3;
+  --sl-color-primary-600: #1a2e44;
+
+  --color-primary: #1a2e44;
+  --color-accent: #cd9021;
+  --color-accent-dark: #bb8015;
+  --color-neutral-back: #b8b8b8;
+
+  --font-family: "Martel Sans", "Arial", sans-serif;
+
+  --phase-arrow: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);
+  --phase-arrow-first: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 0% 0%);
+}
+
+body {
+  font-family: var(--font-family);
+}
+
+header {
+  margin-top: 40px;
+}
+
 .main-div {
   margin: auto;
   text-align: center;
-  width: 500px;
+  width: 800px;
 }
 
 h1 {
-  font-size: 4em;
+  font-size: 64px;
+  color: var(--color-primary);
+  font-family: var(--font-family);
 }
 
 h2 {
-  font-size: 2.5em;
+  font-size: 36px;
+  color: var(--color-primary);
+  font-family: var(--font-family);
+}
+
+h3 {
+  font-size: 26px;
+  font-family: var(--font-family);
 }
 
 p {
-  font-size: 1.2em;
+  font-size: 20px;
+  font-family: var(--font-family);
+  text-align: left;
+  line-height: 1.5;
 }
 
-.buy-procedure-card p {
-  font-style: italic;
+.link-button {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  color: var(--color-accent);
+  text-transform: lowercase;
+}
+
+.link-button:hover {
+  color: var(--color-accent-dark);
 }
 
 .navbar {
-  max-width: 60rem;
-  margin: auto;
-  padding: 2rem;
+  margin-top: 15px;
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-bottom: 40px;
+}
+
+.navlist {
+  width: 100%;
   display: flex;
   justify-content: space-between;
 }
 
-.list {
-  display: flex;
-  gap: 1rem;
+.navlist a {
+  text-decoration: none;
+  color: var(--color-accent);
+  font-size: 20px;
+  text-transform: uppercase;
+  font-family: var(--font-family);
 }
 
-.list a {
+.navlist a:hover {
+  color: var(--color-accent-dark);
+}
+
+.navlist a.active {
+  border-bottom: 2px solid var(--color-accent);
+}
+
+.buy-procedure-header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0px;
+}
+
+.buy-procedure-card-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 10px;
+  width: 100%;
+}
+
+.buy-procedure-link {
+  text-decoration: none;
+}
+
+.buy-procedure-card {
+  background-color: #1a2e44;
+  color: white;
+  border-radius: 12px;
+  width: 250px;
+  height: 90px;
+  text-align: left;
+  padding: 12px 5px;
+  position: relative;
+}
+
+.buy-procedure-card h3 {
+  font-weight: bold;
+  font-family: inherit;
+}
+
+.buy-procedure-card p {
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.phase-overview-wrapper {
+  display: flex;
+  width: 150px;
+  position: absolute;
+  top: 70px;
+  left: 10px;
+}
+
+.phase-overview {
+  width: 46px;
+  height: 34px;
+  clip-path: var(--phase-arrow);
+  background-color: var(--color-neutral-back);
+  margin: -4px;
+}
+
+.phase-overview.completed-phase-overview {
+  background-color: var(--color-accent);
+}
+
+.phase-navbar-wrapper {
+  display: flex;
+  width: 500px;
+  margin: auto;
+  margin-bottom: 30px;
+}
+
+.phase-nav-link {
+  text-decoration: none;
+}
+
+.phase-nav-link.disabled {
+  pointer-events: none;
+}
+
+.phase-navbar {
+  width: 136px;
+  height: 74px;
+  clip-path: var(--phase-arrow);
+  background-color: var(--color-primary);
+  margin: -16px;
+}
+
+.phase-navbar p {
+  text-align: center;
+  height: 74px;
+  line-height: 74px;
+  font-size: 36px;
+  color: white;
+}
+
+.phase-navbar.disabled {
+  background-color: var(--color-neutral-back);
+  pointer-events: none;
+}
+
+.phase-navbar.active {
+  background-color: var(--color-accent);
+}
+
+.first-phase {
+  clip-path: var(--phase-arrow-first);
+}
+
+.list li .list a {
   text-decoration: none;
   color: black;
   padding: 1rem;
@@ -68,19 +234,4 @@ p {
 
 .sl-input {
   margin: 15px;
-}
-
-:root {
-  /* Changes the primary theme color to purple using primitives */
-  --sl-color-primary-50: var(--sl-color-purple-50);
-  --sl-color-primary-100: var(--sl-color-purple-100);
-  --sl-color-primary-200: var(--sl-color-purple-200);
-  --sl-color-primary-300: var(--sl-color-purple-300);
-  --sl-color-primary-400: var(--sl-color-purple-400);
-  --sl-color-primary-500: #2139b3;
-  --sl-color-primary-600: #1a2e44;
-  --sl-color-primary-700: var(--sl-color-purple-700);
-  --sl-color-primary-800: var(--sl-color-purple-800);
-  --sl-color-primary-900: var(--sl-color-purple-900);
-  --sl-color-primary-950: var(--sl-color-purple-950);
 }

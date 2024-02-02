@@ -10,9 +10,10 @@ const phaseSlice = createSlice({
   reducers: {
     createPhases(state, action) {
       const id = action.payload;
-      let phaseInfo = { phases: [] };
+      let phaseInfo = { phaseCompleted: [], phaseEnabled: [], currentPhase: 0 };
       for (let i = 0; i < PHASE_NUM; ++i) {
-        phaseInfo.phases[i] = false;
+        phaseInfo.phaseCompleted[i] = false;
+        phaseInfo.phaseEnabled[i] = i === 0;
       }
       state.phaseInfos[id] = phaseInfo;
     },
@@ -20,12 +21,9 @@ const phaseSlice = createSlice({
       const buyProcedure = action.payload;
       const phaseInfo = state.phaseInfos[buyProcedure.id];
 
-      console.log(buyProcedure);
       for (let i = 0; i < PHASE_NUM; ++i) {
         let phaseComplete = true;
-        console.log(i);
         buyProcedurePhaseCombinations[i].forEach((columnName) => {
-          console.log(buyProcedure[columnName]);
           if (
             buyProcedure[columnName] === undefined ||
             buyProcedure[columnName] === null ||
@@ -35,7 +33,9 @@ const phaseSlice = createSlice({
             phaseComplete = false;
           }
         });
-        phaseInfo.phases[i] = phaseComplete;
+        phaseInfo.phaseCompleted[i] = phaseComplete;
+        phaseInfo.phaseEnabled[i] = i === 0 || phaseInfo.phaseCompleted[i - 1];
+        if (phaseInfo.phaseEnabled[i]) phaseInfo.currentPhase = i;
       }
     },
   },

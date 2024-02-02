@@ -11,7 +11,6 @@ export default function PhasePage() {
     (state) => state.buyProcedure.buyProcedures
   );
   const phaseInfos = useSelector((state) => state.phase.phaseInfos);
-  console.log(phaseInfos);
   const { id, phaseId } = useParams();
   const dispatch = useDispatch();
 
@@ -44,7 +43,7 @@ export default function PhasePage() {
     <>
       {buyProcedure && (
         <>
-          <PhaseNavBar phaseInfo={phaseInfo} />
+          <PhaseNavBar phaseInfo={phaseInfo} phaseId={phaseId} />
 
           <div className="buy-procedure-card">
             <h2>
